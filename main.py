@@ -1,9 +1,8 @@
 # main.py
 import sys
-
 from PySide2.QtWidgets import QWidget, QVBoxLayout, QApplication
 
-from view.base.enjoy_edit import EnjoyEdit
+from enjoy_edit import EnjoyEdit
 
 
 class MainWidget(QWidget):
@@ -22,6 +21,7 @@ class MainWidget(QWidget):
             if widget != self and isinstance(widget, QWidget):
                 widget.close()
         event.accept()
+
 
 if __name__ == '__main__':
     app = QApplication()

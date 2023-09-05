@@ -1,5 +1,6 @@
-# keyboard_util.py 
-from util.singleton_util import singleton
+# keyboard_util.py
+from singleton_util import singleton
+
 
 @singleton
 class KeyBoardUtil(object):

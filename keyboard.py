@@ -5,8 +5,8 @@ from PySide2.QtCore import QRect, Signal, QPoint
 from PySide2.QtGui import QFont, Qt
 from PySide2.QtWidgets import QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QDialog, QSizePolicy
 
-from util.keyboard_util import KeyBoardUtil
-from util.singleton_util import singleton
+from keyboard_util import KeyBoardUtil
+from singleton_util import singleton
 
 
 @singleton
@@ -26,7 +26,6 @@ class KeyBoard(QWidget):
         self.update_keys()
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WindowCloseButtonHint)
 
-
     def on_key_clicked(self, s):
         if s == "close":
             self.hide()
@@ -44,11 +43,11 @@ class KeyBoard(QWidget):
         if len(self.keys) == 0:
             # 将键盘按钮添加到布局中
             row = QHBoxLayout()
-            for key,value in self.normal_dict.items():
+            for key, value in self.normal_dict.items():
                 key_btn = QPushButton(key)
-                key_btn.setFont(QFont("Arial",20))
+                key_btn.setFont(QFont("Arial", 20))
                 # key_btn.setFixedSize(70,50)
-                key_btn.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
+                key_btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
                 self.keys.append(key_btn)
                 row.addWidget(key_btn)
                 sz = len(self.keys)
@@ -72,4 +71,3 @@ class KeyBoard(QWidget):
             key.clicked.connect(partial(self.on_key_clicked, key.text()))
 
         self.setLayout(self.layout)
-

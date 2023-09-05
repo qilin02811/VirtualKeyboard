@@ -2,7 +2,7 @@
 from PySide2 import QtGui, QtCore, QtWidgets
 from PySide2.QtWidgets import QLineEdit, QWidget, QVBoxLayout, QSizePolicy
 
-from view.base.enjoy_keyboard import EnjoyKeyBoard
+from keyboard import KeyBoard
 
 
 class EnjoyEdit(QLineEdit):
@@ -15,7 +15,7 @@ class EnjoyEdit(QLineEdit):
         super(EnjoyEdit, self).mousePressEvent(event)
         # 自定义点击事件
         if self.keyboard is None:
-            self.keyboard = EnjoyKeyBoard(self)
+            self.keyboard = KeyBoard(self)
         self.update_position()
         self.keyboard.press_signal.connect(self.update_edit)
         self.keyboard.press_signal.disconnect()
@@ -24,8 +24,8 @@ class EnjoyEdit(QLineEdit):
 
     def update_position(self):
         desktop = QtWidgets.QApplication.desktop()
-        self.keyboard.setMinimumWidth(desktop.width())
-        self.keyboard.setMaximumWidth(desktop.width())
+        self.keyboard.setMinimumWidth(desktop.width()/2)
+        self.keyboard.setMaximumWidth(desktop.width()/2)
         self.keyboard.setMaximumHeight(desktop.height() / 5)
         self.keyboard.setMinimumHeight(desktop.height() / 5)
         self.keyboard.setGeometry(0, desktop.height()-self.keyboard.height(), self.keyboard.width(), self.keyboard.height())
